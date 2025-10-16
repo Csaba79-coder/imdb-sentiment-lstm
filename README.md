@@ -29,7 +29,26 @@ imdb-sentiment-lstm/
 ```
 
 ## 🚀 Getting Started
-Coming soon...
+
+### Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Optional: Virtual Environment
+If you don't have a virtual environment:
+```bash
+# Windows
+python -m venv venv
+venv\Scripts\activate
+
+# Mac/Linux
+python -m venv venv
+source venv/bin/activate
+```
 
 ## 📚 University Project
 Created as part of Deep Learning coursework.
+
+## 📄 License
+MIT License
