@@ -1,26 +1,27 @@
 # Deep Learning Framework
-tensorflow==2.19.1
+tensorflow==2.20.0
 
 # Data Processing
-numpy==1.26.4
-pandas==2.2.0
+numpy>=1.26.4,<2.0.0  # Keep 1.x for TensorFlow compatibility
+pandas==2.3.3
 
 # Visualization
-matplotlib==3.8.2
-seaborn==0.13.1
+matplotlib==3.10.7
+seaborn==0.13.2
+wordcloud==1.9.4
 
 # Text Processing
-nltk==3.8.1
+nltk==3.9.2
 
 # Machine Learning Utils
-scikit-learn==1.4.0
+scikit-learn==1.7.2
 
 # Progress Bars
-tqdm==4.66.1
+tqdm==4.67.1
 
 # Jupyter Support
-jupyter==1.0.0
-ipykernel==6.29.0
+jupyter==1.1.1
+ipykernel==7.0.1
 
 # Optional: Streamlit (demo app készítéséhez később)
-streamlit==1.31.0
+streamlit==1.50.0
