@@ -56,3 +56,7 @@ Thumbs.db
 # Training artifacts
 checkpoints/
 tensorboard_logs/
+
+# Keep files (placeholder files for empty directories)
+**/.gitkeep
+.gitkeep

@@ -25,27 +25,28 @@ Deep Learning project implementing a **many-to-one LSTM** architecture for senti
 ## 📁 Project Structure
 ```
 imdb-sentiment-lstm/
+├── .venv/                            # Virtual environment
 ├── data/
-│   ├── imdb_dataset.csv              # Original dataset
+│   ├── imdb_dataset.csv              # Original dataset (50K reviews)
 │   ├── imdb_dataset_formatted.csv    # HTML tags removed
-│   └── imdb_dataset_cleaned.csv      # Final cleaned data (49,578 reviews)
+│   └── imdb_dataset_cleaned.csv      # Final cleaned (49,578 reviews)
+├── models/                           # Saved trained models
+├── notebooks/                        # Jupyter notebooks for experiments
 ├── visualizations/
 │   ├── eda/                          # Exploratory Data Analysis plots
-│   │   ├── sentiment_distribution.png
-│   │   ├── text_length_histogram.png
-│   │   ├── text_length_boxplot.png
-│   │   ├── wordcloud_positive.png
-│   │   ├── wordcloud_negative.png
-│   │   ├── top_words_positive.png
-│   │   └── top_words_negative.png
 │   ├── preprocessing/                # Preprocessing visualizations
 │   └── training/                     # Training history plots
-├── models/                           # Saved trained models
 ├── src/
+│   ├── __init__.py
+│   ├── check_versions.py             # PyPI version checker
 │   ├── config.py                     # Configuration & hyperparameters
+│   ├── data_clean.py                 # Data cleaning & EDA
 │   ├── data_inspect.py               # Initial data inspection
-│   ├── data_format.py                # HTML cleaning & formatting
-│   └── data_clean.py                 # Data cleaning & EDA
+│   └── data_loader.py                # Data loading utilities
+├── .gitignore
+├── LICENSE
+├── main.py                           # Main entry point
+├── README.md
 └── requirements.txt
 ```
 
@@ -79,7 +80,7 @@ If prompted to update pip:
 python -m pip install --upgrade pip
 ```
 
-## 📋 Data Pipeline (Current Progress)
+## 📋 Data Pipeline
 
 ### ✅ Step 1: Data Inspection
 Explore the raw dataset structure and basic statistics.
@@ -141,7 +142,7 @@ Median Word Count: 172 words
 
 ---
 
-### 🔜 Step 4: Data Preprocessing (Coming Next)
+### 🔜 Step 4: Data Preprocessing
 - Tokenization
 - Sequence padding
 - Train/test split
@@ -168,6 +169,8 @@ After cleaning, our dataset shows excellent characteristics for training:
 - **Outliers Kept:** 7.39% long/short reviews retained (may contain valuable sentiment information)
 
 Check the visualizations in `visualizations/eda/` for detailed insights! 📈
+
+---
 
 ## 🎓 University Project
 Created as part of Deep Learning coursework at University of Pannonia.
@@ -201,25 +204,9 @@ source .venv/bin/activate
 pip install wordcloud==1.9.4
 ```
 
----
-
-**🎯 Current Status:** Data cleaning & EDA completed ✅  
-**⏭️ Next Step:** Data preprocessing (tokenization, padding)
-
-### Optional: Virtual Environment
-If you don't have a virtual environment:
+### Issue: Module not found errors
+**Solution:** Run scripts from project root:
 ```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# Mac/Linux
-python -m venv venv
-source venv/bin/activate
+python src/data_clean.py  # ✅ Correct
+cd src && python data_clean.py  # ❌ Wrong
 ```
-
-## 📚 University Project
-Created as part of Deep Learning coursework.
-
-## 📄 License
-MIT License
