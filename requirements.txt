@@ -1,6 +1,5 @@
 # Deep Learning Framework
-tensorflow==2.15.0
-keras==2.15.0
+tensorflow==2.19.1
 
 # Data Processing
 numpy==1.26.4
