@@ -9,6 +9,24 @@ Deep Learning project implementing a **many-to-one LSTM** architecture for senti
 - **Classes:** Binary (Positive/Negative)
 - **Balance:** 1.01:1 (50.18% positive, 49.82% negative) ✅ Perfectly balanced!
 
+## 📊 Dataset Setup
+
+### Download the Dataset
+1. Visit [Kaggle - IMDB Dataset](https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews)
+2. Download `IMDB Dataset.csv`
+3. Place it in `data/` folder as `imdb_dataset.csv`
+
+### Or use Kaggle API (automated):
+```bash
+# Install Kaggle CLI
+pip install kaggle
+
+# Download dataset
+kaggle datasets download -d lakshmi25npathi/imdb-dataset-of-50k-movie-reviews
+unzip imdb-dataset-of-50k-movie-reviews.zip -d data/
+mv data/IMDB\ Dataset.csv data/imdb_dataset.csv
+```
+
 ## 🧠 Architecture
 - Many-to-one LSTM model
 - Cell state mechanism (forget gate, input gate, output gate)
