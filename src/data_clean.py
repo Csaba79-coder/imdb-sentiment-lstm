@@ -101,6 +101,45 @@ def check_duplicates(df):
         return df
 
 
+def validate_sentiment_values(df):
+    """
+    Validate sentiment values and remove invalid rows.
+
+    Args:
+        df (pd.DataFrame): Input dataframe
+
+    Returns:
+        pd.DataFrame: Dataframe with only valid sentiment values
+    """
+    print("\n" + "=" * 70)
+    print("VALIDATING SENTIMENT VALUES")
+    print("=" * 70 + "\n")
+
+    # Check for empty strings
+    empty_sentiment = df['sentiment'].str.strip() == ""
+    empty_count = empty_sentiment.sum()
+
+    # Check for invalid values (not 'positive' or 'negative')
+    valid_sentiments = ['positive', 'negative']
+    invalid_sentiment = ~df['sentiment'].isin(valid_sentiments)
+    invalid_count = invalid_sentiment.sum()
+
+    print(f"Empty sentiment values: {empty_count}")
+    print(f"Invalid sentiment values: {invalid_count}")
+
+    if empty_count > 0 or invalid_count > 0:
+        print(f"\n⚠️  Found {empty_count + invalid_count} invalid rows")
+        print(f"   Removing invalid rows...")
+        df_clean = df[df['sentiment'].isin(valid_sentiments)].copy()
+        print(f"✅ Invalid rows removed!")
+        print(f"   Rows before: {len(df)}")
+        print(f"   Rows after: {len(df_clean)}")
+        return df_clean
+    else:
+        print("\n✅ All sentiment values are valid!")
+        return df
+
+
 def add_text_length_feature(df):
     """
     Add text length feature (word count and character count).
@@ -405,6 +444,7 @@ def main():
     # Data cleaning
     check_missing_values(df)
     df = check_duplicates(df)
+    df = validate_sentiment_values(df)  # ← ÚJ VALIDÁCIÓ!
     df = add_text_length_feature(df)
     df = detect_outliers(df)
 
