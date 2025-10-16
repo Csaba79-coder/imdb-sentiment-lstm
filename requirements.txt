@@ -1,0 +1,27 @@
+# Deep Learning Framework
+tensorflow==2.15.0
+keras==2.15.0
+
+# Data Processing
+numpy==1.26.4
+pandas==2.2.0
+
+# Visualization
+matplotlib==3.8.2
+seaborn==0.13.1
+
+# Text Processing
+nltk==3.8.1
+
+# Machine Learning Utils
+scikit-learn==1.4.0
+
+# Progress Bars
+tqdm==4.66.1
+
+# Jupyter Support
+jupyter==1.0.0
+ipykernel==6.29.0
+
+# Optional: Streamlit (demo app készítéséhez később)
+streamlit==1.31.0
