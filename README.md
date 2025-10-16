@@ -35,6 +35,12 @@ imdb-sentiment-lstm/
 pip install -r requirements.txt
 ```
 
+### Optional: Update pip (25.1.1 -> 25.2)
+If prompted to update pip:
+```bash
+python -m pip install --upgrade pip
+```
+
 ### Optional: Virtual Environment
 If you don't have a virtual environment:
 ```bash
