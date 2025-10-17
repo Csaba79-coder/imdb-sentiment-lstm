@@ -282,6 +282,7 @@ Created as part of Deep Learning coursework at University of Pannonia.
 
 ## 👨‍💻 Author
 Developed with focus on understanding LSTM mechanisms and practical NLP implementation.
+Developed by **Csaba79-coder** | Csaba Vadász
 
 ## 📄 License
 MIT License
