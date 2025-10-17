@@ -45,38 +45,40 @@ mv data/IMDB\ Dataset.csv data/imdb_dataset.csv
 ## 📁 Project Structure
 ```
 imdb-sentiment-lstm/
-├── .venv/                            # Virtual environment
+├── .venv/                                                                          # Virtual environment
 ├── data/
-│   ├── imdb_dataset.csv              # Original dataset (50K reviews)
-│   ├── imdb_dataset_formatted.csv    # HTML tags removed
-│   ├── imdb_dataset_cleaned.csv      # Final cleaned (49,578 reviews)
-│   ├── X_train_preprocessed.npy      # Preprocessed training sequences
-│   ├── X_val_preprocessed.npy        # Preprocessed validation sequences
-│   ├── y_train.npy                   # Training labels
-│   └── y_val.npy                     # Validation labels
+│   ├── imdb_dataset.csv                                                            # Original dataset (50K reviews)
+│   ├── imdb_dataset_formatted.csv                                                  # HTML tags removed
+│   ├── imdb_dataset_cleaned.csv                                                    # Final cleaned (49,578 reviews)
+│   ├── X_train_preprocessed.npy                                                    # Preprocessed training sequences
+│   ├── X_val_preprocessed.npy                                                      # Preprocessed validation sequences
+│   ├── y_train.npy                                                                 # Training labels
+│   └── y_val.npy                                                                   # Validation labels
+├── doc/
+│   └── imbd_sentiment_analysis_project_documentation_d18zgx_vadasz_csaba.pdf       # Hungarian doc
 ├── models/
-│   ├── tokenizer.pickle              # Keras tokenizer (vocab: 10K)
-│   └── lstm_sentiment_model.h5       # Trained model
-├── notebooks/                        # Jupyter notebooks for experiments
+│   ├── tokenizer.pickle                                                            # Keras tokenizer (vocab: 10K)
+│   └── lstm_sentiment_model.h5                                                     # Trained model
+├── notebooks/                                                                      # Jupyter notebooks for experiments
 ├── visualizations/
-│   ├── eda/                          # Exploratory Data Analysis plots (7)
-│   ├── preprocessing/                # Preprocessing visualizations (2)
-│   └── training/                     # Training history plots & model architecture
+│   ├── eda/                                                                        # Exploratory Data Analysis plots (7)
+│   ├── preprocessing/                                                              # Preprocessing visualizations (2)
+│   └── training/                                                                   # Training history plots & model architecture
 ├── src/
 │   ├── __init__.py
-│   ├── check_versions.py             # PyPI version checker
-│   ├── config.py                     # Configuration & hyperparameters
-│   ├── data_clean.py                 # Data cleaning & EDA
-│   ├── data_inspect.py               # Initial data inspection
-│   ├── data_format.py                # HTML tag removal
-│   ├── data_loader.py                # Data loading & train/val split
-│   ├── data_preprocess.py            # Tokenization & padding
-│   └── model.py                      # LSTM model architecture
+│   ├── check_versions.py                                                           # PyPI version checker
+│   ├── config.py                                                                   # Configuration & hyperparameters
+│   ├── data_clean.py                                                               # Data cleaning & EDA
+│   ├── data_inspect.py                                                             # Initial data inspection
+│   ├── data_format.py                                                              # HTML tag removal
+│   ├── data_loader.py                                                              # Data loading & train/val split
+│   ├── data_preprocess.py                                                          # Tokenization & padding
+│   └── model.py                                                                    # LSTM model architecture
 ├── .gitignore
-├── LICENSE
-├── main.py                           # Main entry point
+├── LICENSE                                                                         # MIT License
+├── main.py                                                                         # Main entry point
 ├── README.md
-└── requirements.txt
+└── requirements.txt                                                                # Packages to install with versions
 ```
 
 ## 🚀 Getting Started
