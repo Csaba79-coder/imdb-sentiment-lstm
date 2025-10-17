@@ -14,7 +14,6 @@ from src.config import (
     DATA_PATH_CLEANED,
     VOCAB_SIZE,
     MAX_LENGTH,
-    MODEL_DIR,
     TOKENIZER_PATH,
     VIZ_PREPROCESSING,
     RANDOM_SEED

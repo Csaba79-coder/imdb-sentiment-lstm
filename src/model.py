@@ -5,7 +5,6 @@ Implements a many-to-one LSTM network for binary sentiment classification.
 
 import os
 import json
-import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Embedding, LSTM, Dense, Dropout, Bidirectional
 from tensorflow.keras.optimizers import Adam
