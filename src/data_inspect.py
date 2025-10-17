@@ -258,7 +258,30 @@ def compare_files():
         import traceback
         traceback.print_exc()
 
+def main():
+    """
+    Main function to run inspection and formatting pipeline.
+    """
+    # Step 1: Inspect original CSV
+    print("STEP 1: Inspecting original CSV\n")
+    inspect_csv()
 
+    # Step 2: Create formatted CSV
+    print("\n\nSTEP 2: Creating formatted CSV\n")
+    formatted_path = create_formatted_csv()
+
+    # Step 3: Compare files
+    if formatted_path:
+        print("\n\nSTEP 3: Comparing files\n")
+        compare_files()
+
+        print(f"\n🎉 SUCCESS! Formatted file created at:")
+        print(f"   {formatted_path}")
+
+
+if __name__ == "__main__":
+    main()
+"""
 if __name__ == "__main__":
     # Step 1: Inspect original CSV
     print("STEP 1: Inspecting original CSV\n")
@@ -275,4 +298,6 @@ if __name__ == "__main__":
 
         print(f"\n🎉 SUCCESS! Formatted file created at:")
         print(f"   {formatted_path}")
+
+"""
 
