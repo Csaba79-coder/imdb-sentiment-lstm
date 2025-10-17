@@ -28,9 +28,11 @@ mv data/IMDB\ Dataset.csv data/imdb_dataset.csv
 ```
 
 ## 🧠 Architecture
-- Many-to-one LSTM model
-- Cell state mechanism (forget gate, input gate, output gate)
-- Long-term dependency learning for sentiment nuances
+- **Model:** Many-to-one LSTM
+- **Layers:** Embedding → LSTM → Dropout → Dense (Sigmoid)
+- **Parameters:** 1.4M trainable parameters
+- **Cell State:** Forget gate, input gate, output gate
+- **Learning:** Long-term dependency for sentiment nuances
 
 ## 🛠️ Tech Stack
 - **Python:** 3.12 (stable version)
@@ -47,20 +49,29 @@ imdb-sentiment-lstm/
 ├── data/
 │   ├── imdb_dataset.csv              # Original dataset (50K reviews)
 │   ├── imdb_dataset_formatted.csv    # HTML tags removed
-│   └── imdb_dataset_cleaned.csv      # Final cleaned (49,578 reviews)
-├── models/                           # Saved trained models
+│   ├── imdb_dataset_cleaned.csv      # Final cleaned (49,578 reviews)
+│   ├── X_train_preprocessed.npy      # Preprocessed training sequences
+│   ├── X_val_preprocessed.npy        # Preprocessed validation sequences
+│   ├── y_train.npy                   # Training labels
+│   └── y_val.npy                     # Validation labels
+├── models/
+│   ├── tokenizer.pickle              # Keras tokenizer (vocab: 10K)
+│   └── lstm_sentiment_model.h5       # Trained model
 ├── notebooks/                        # Jupyter notebooks for experiments
 ├── visualizations/
-│   ├── eda/                          # Exploratory Data Analysis plots
-│   ├── preprocessing/                # Preprocessing visualizations
-│   └── training/                     # Training history plots
+│   ├── eda/                          # Exploratory Data Analysis plots (7)
+│   ├── preprocessing/                # Preprocessing visualizations (2)
+│   └── training/                     # Training history plots & model architecture
 ├── src/
 │   ├── __init__.py
 │   ├── check_versions.py             # PyPI version checker
 │   ├── config.py                     # Configuration & hyperparameters
 │   ├── data_clean.py                 # Data cleaning & EDA
 │   ├── data_inspect.py               # Initial data inspection
-│   └── data_loader.py                # Data loading utilities
+│   ├── data_format.py                # HTML tag removal
+│   ├── data_loader.py                # Data loading & train/val split
+│   ├── data_preprocess.py            # Tokenization & padding
+│   └── model.py                      # LSTM model architecture
 ├── .gitignore
 ├── LICENSE
 ├── main.py                           # Main entry point
@@ -135,6 +146,7 @@ python src/data_clean.py
 **What it does:**
 - ✅ **Missing values check:** 0 missing values found
 - ✅ **Duplicate removal:** 422 duplicates removed (0.84%)
+- ✅ **Sentiment validation:** 0 invalid values found
 - ✅ **Text length analysis:** Character & word counts
 - ✅ **Outlier detection:** IQR method (7.39% outliers kept)
 - ✅ **Descriptive statistics:** Mean, median, std, min, max
@@ -160,19 +172,92 @@ Median Word Count: 172 words
 
 ---
 
-### 🔜 Step 4: Data Preprocessing
-- Tokenization
-- Sequence padding
-- Train/test split
-- Vocabulary creation
+### ✅ Step 4: Data Preprocessing
+Tokenization, sequence padding, and train/validation split.
+```bash
+python src/data_preprocess.py
+```
+
+**What it does:**
+- ✅ **Tokenization:** Convert text to integer sequences
+- ✅ **Vocabulary:** Top 10,000 most frequent words
+- ✅ **Padding:** All sequences padded/truncated to 200 tokens
+- ✅ **Train/Val Split:** 80/20 stratified split (39,662 / 9,916)
+- ✅ **Save preprocessed data:** Arrays saved as .npy files (38.2 MB)
+- ✅ **2 Visualizations created:**
+  - Sequence length distribution (train & val)
+  - Vocabulary statistics (Zipf's law)
+
+**Output:**
+- `models/tokenizer.pickle` (4.7 MB)
+- `data/X_train_preprocessed.npy` (30.26 MB)
+- `data/X_val_preprocessed.npy` (7.57 MB)
+- `data/y_train.npy` (309 KB)
+- `data/y_val.npy` (77 KB)
+- 2 PNG visualizations in `visualizations/preprocessing/`
+
+**Key Statistics:**
+```
+Training Set:      39,662 samples (80%)
+Validation Set:     9,916 samples (20%)
+Vocabulary Size:   10,000 words
+Sequence Length:   200 tokens (padded/truncated)
+Padding:           58.9% padded, 40.8% truncated
+```
 
 ---
 
-### 🔜 Step 5: Model Training
-- LSTM architecture definition
-- Model compilation
-- Training with validation
-- Performance evaluation
+### ✅ Step 5: Model Building
+Build and compile LSTM architecture.
+```bash
+python src/model.py
+```
+
+**Architecture:**
+```
+Input (batch_size, 200)
+    ↓
+Embedding Layer (vocab_size=10K, embedding_dim=128)
+    ↓
+LSTM Layer (128 units, dropout=0.5, recurrent_dropout=0.2)
+    ↓
+Dropout Layer (0.5)
+    ↓
+Dense Output (1 unit, sigmoid activation)
+    ↓
+Output (batch_size, 1) - probability [0=negative, 1=positive]
+```
+
+**Model Summary:**
+```
+Total Parameters:     1,411,713 (5.39 MB)
+Trainable Parameters: 1,411,713
+Layer Breakdown:
+  - Embedding:        1,280,000 params
+  - LSTM:               131,584 params
+  - Dense:                  129 params
+```
+
+**Output:**
+- `visualizations/training/model_architecture.json`
+- `visualizations/training/model_config.json`
+- `visualizations/training/model_architecture.png`
+
+---
+
+### 🔜 Step 6: Model Training
+- Train LSTM model (10 epochs, batch_size=64)
+- Early stopping with patience=3
+- Save training history & plots
+- Save trained model
+
+---
+
+### 🔜 Step 7: Model Evaluation
+- Evaluate on validation set
+- Confusion matrix
+- Classification report
+- Sample predictions
 
 ---
 

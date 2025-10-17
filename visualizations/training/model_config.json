@@ -1,0 +1,7 @@
+{
+    "name": "LSTM_Sentiment_Classifier",
+    "layers": 4,
+    "parameters": 1411713,
+    "input_shape": "(None, 200)",
+    "output_shape": "(None, 1)"
+}
